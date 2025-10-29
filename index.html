@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Empire - Город Будущего</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Заголовок -->
+        <header class="header">
+            <h1 class="title">🏙️ CRYPTO EMPIRE</h1>
+            <p class="subtitle">Город будущего</p>
+        </header>
+
+        <!-- Статистика ресурсов -->
+        <div class="resources-panel">
+            <div class="resource">
+                <span class="resource-icon">⚡</span>
+                <span class="resource-value" id="energy">100</span>
+                <span class="resource-max">/100</span>
+            </div>
+            <div class="resource">
+                <span class="resource-icon">💿</span>
+                <span class="resource-value" id="chips">100</span>
+            </div>
+            <div class="resource">
+                <span class="resource-icon">🔮</span>
+                <span class="resource-value" id="crystals">10</span>
+            </div>
+            <div class="resource">
+                <span class="resource-icon">📊</span>
+                <span class="resource-value" id="data">0</span>
+            </div>
+        </div>
+
+        <!-- Основной игровой интерфейс -->
+        <main class="game-area">
+            <!-- Кнопка сбора ресурсов -->
+            <div class="action-card">
+                <h3>⚒️ Добыча ресурсов</h3>
+                <p>Собери чипы и кристаллы</p>
+                <button class="btn-primary" id="collect-btn" onclick="collectResources()">
+                    Добывать (10⚡)
+                </button>
+                <div class="cooldown-bar">
+                    <div class="cooldown-fill" id="energy-bar"></div>
+                </div>
+            </div>
+
+            <!-- Здания -->
+            <div class="action-card">
+                <h3>🏗️ Мои здания</h3>
+                <div class="buildings-grid">
+                    <div class="building" onclick="upgradeBuilding('mine')">
+                        <div class="building-icon">⛏️</div>
+                        <div class="building-info">
+                            <div class="building-name">Шахта</div>
+                            <div class="building-level">Ур. <span id="mine-level">1</span></div>
+                            <div class="building-income">+<span id="mine-income">2</span> чипов/час</div>
+                        </div>
+                        <div class="upgrade-cost">💿 <span id="mine-cost">50</span></div>
+                    </div>
+
+                    <div class="building" onclick="upgradeBuilding('lab')">
+                        <div class="building-icon">🔬</div>
+                        <div class="building-info">
+                            <div class="building-name">Лаборатория</div>
+                            <div class="building-level">Ур. <span id="lab-level">1</span></div>
+                            <div class="building-income">+<span id="lab-income">0.1</span> данных/час</div>
+                        </div>
+                        <div class="upgrade-cost">💿 <span id="lab-cost">50</span></div>
+                    </div>
+
+                    <div class="building" onclick="upgradeBuilding('energy')">
+                        <div class="building-icon">⚡</div>
+                        <div class="building-info">
+                            <div class="building-name">Энергостанция</div>
+                            <div class="building-level">Ур. <span id="energy-level">1</span></div>
+                            <div class="building-income">+<span id="energy-income">0.2</span> энергии/мин</div>
+                        </div>
+                        <div class="upgrade-cost">💿 <span id="energy-cost">50</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Партнерская программа -->
+            <div class="action-card">
+                <h3>👥 Партнерская программа</h3>
+                <div class="referral-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="referral-count">0</div>
+                        <div class="stat-label">Партнеров</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="referral-bonus">0%</div>
+                        <div class="stat-label">Бонус к доходу</div>
+                    </div>
+                </div>
+                <div class="referral-link">
+                    <input type="text" id="ref-link" readonly value="Загрузка...">
+                    <button class="btn-secondary" onclick="copyReferralLink()">📋 Копировать</button>
+                </div>
+                <button class="btn-share" onclick="shareGame()">
+                    📤 Поделиться игрой
+                </button>
+            </div>
+
+            <!-- Ежедневные награды -->
+            <div class="action-card">
+                <h3>🎁 Ежедневная награда</h3>
+                <div class="daily-reward">
+                    <div class="reward-day" id="day1">1</div>
+                    <div class="reward-day" id="day2">2</div>
+                    <div class="reward-day" id="day3">3</div>
+                    <div class="reward-day" id="day4">4</div>
+                    <div class="reward-day" id="day5">5</div>
+                    <div class="reward-day" id="day6">6</div>
+                    <div class="reward-day" id="day7">7</div>
+                </div>
+                <button class="btn-reward" id="daily-btn" onclick="claimDailyReward()">
+                    Забрать награду дня
+                </button>
+                <div class="streak-info">Серия: <span id="streak">0</span> дней</div>
+            </div>
+        </main>
+
+        <!-- Уведомления -->
+        <div id="notification" class="notification hidden">
+            <span id="notification-text"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
